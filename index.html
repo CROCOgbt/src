@@ -3,491 +3,659 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil Komunitas Kami</title>
+    <title>SRC - Stress Relief Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5",
+              secondary: "#818CF8",
+              accent: "#10B981",
+              whatsapp: "#25D366",
+              dark: "#1E293B",
+              light: "#F8FAFC",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
     <style>
-      :root {
-        --primary-color: #50d890;
-        --secondary-color: #4f98ca;
-        --light-color: #ffffff;
-        --dark-color: #333333;
-        --bg-color: #f8fafc;
-        --card-bg: rgba(255, 255, 255, 0.95);
-        --instagram-color: #e1306c;
-        --tiktok-color: #000000;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-
       body {
-        background-color: var(--bg-color);
-        color: var(--dark-color);
-        line-height: 1.6;
-        background-image: radial-gradient(
-          circle at 10% 20%,
-          rgba(228, 245, 252, 0.5) 0%,
-          rgba(255, 255, 255, 0.5) 90%
-        );
-        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
       }
-
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
+      .hero-bg {
+        background: linear-gradient(
+            135deg,
+            rgba(79, 70, 229, 0.9) 0%,
+            rgba(129, 140, 248, 0.85) 100%
+          ),
+          url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
       }
-
-      .profile-card {
-        background-color: var(--card-bg);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        padding: 30px;
-        text-align: center;
-        margin-top: 50px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+      .card-hover {
+        transition: all 0.3s ease;
       }
-
-      .profile-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
       }
-
-      .profile-img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
+      .role-card {
+        transition: all 0.3s ease;
       }
-
-      .profile-img:hover {
+      .role-card:hover {
         transform: scale(1.05);
       }
-
-      .community-name-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 15px;
-        overflow: hidden;
+      .bot-animation {
+        animation: float 3s ease-in-out infinite;
       }
-
-      .community-name {
-        font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsif dengan clamp() */
-        color: var(--primary-color);
-        font-weight: 700;
-        background: linear-gradient(
-          to right,
-          var(--primary-color),
-          var(--secondary-color)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-align: center;
-        display: inline-block;
-        padding: 0 10px;
-        position: relative;
-        line-height: 1.2;
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
       }
-
-      .community-name::before,
-      .community-name::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 2px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          var(--primary-color)
-        );
-      }
-
-      .community-name::before {
-        right: 100%;
-      }
-
-      .community-name::after {
-        left: 100%;
-        background: linear-gradient(
-          to left,
-          transparent,
-          var(--secondary-color)
-        );
-      }
-
-      .community-description-container {
-        position: relative;
-        height: 120px;
-        margin-bottom: 30px;
-      }
-
-      .community-description {
-        font-size: 1.1rem;
-        color: #555;
-        line-height: 1.7;
-        position: absolute;
-        width: 100%;
-        left: 0;
-        opacity: 1;
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-
-      .community-description.fade-out {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      .community-description.fade-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 12px 30px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
+      .join-btn {
         transition: all 0.3s ease;
-        margin: 10px 5px;
-        border: none;
-        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
+      }
+      .join-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px rgba(79, 70, 229, 0.4);
+      }
+
+      /* WhatsApp Button Animation */
+      .whatsapp-btn {
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
         position: relative;
         overflow: hidden;
       }
-
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        font-size: 1.1rem;
-        box-shadow: 0 4px 15px rgba(80, 216, 144, 0.3);
+      .whatsapp-btn:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
       }
-
-      .btn-primary:hover {
-        background-color: #3ecf80;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(80, 216, 144, 0.4);
+      .whatsapp-btn:active {
+        transform: translateY(2px);
       }
-
-      .btn-primary::after {
+      .whatsapp-btn::before {
         content: "";
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: linear-gradient(
-          to bottom right,
-          rgba(255, 255, 255, 0.3) 0%,
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.4) 0%,
           rgba(255, 255, 255, 0) 60%
         );
-        transform: rotate(30deg);
-        transition: all 0.3s ease;
+        transform: scale(0);
+        transition: transform 0.6s ease;
       }
-
-      .btn-primary:hover::after {
-        left: 100%;
+      .whatsapp-btn:hover::before {
+        transform: scale(1);
       }
-
-      .btn-secondary {
-        background-color: var(--secondary-color);
-        color: white;
-        font-size: 0.9rem;
-        padding: 10px 20px;
-        box-shadow: 0 4px 10px rgba(79, 152, 202, 0.3);
+      .pulse {
+        animation: pulse 2s infinite;
       }
-
-      .btn-secondary:hover {
-        background-color: #3e8ab8;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(79, 152, 202, 0.4);
-      }
-
-      .social-icons {
-        margin: 30px 0;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .social-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        border-radius: 15px;
-        background-color: white;
-        color: white;
-        font-size: 1.8rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .social-icon::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.3) 0%,
-          rgba(255, 255, 255, 0) 50%
-        );
-        transform: translateX(-100%);
-        transition: transform 0.5s ease;
-      }
-
-      .social-icon:hover::before {
-        transform: translateX(100%);
-      }
-
-      .social-icon.instagram {
-        background: linear-gradient(
-          45deg,
-          #f09433,
-          #e6683c,
-          #dc2743,
-          #cc2366,
-          #bc1888
-        );
-      }
-
-      .social-icon.tiktok {
-        background: linear-gradient(45deg, #25f4ee, #000000, #fe2c55);
-        background-size: 200% 200%;
-        animation: gradientShift 3s ease infinite;
-      }
-
-      @keyframes gradientShift {
+      @keyframes pulse {
         0% {
-          background-position: 0% 50%;
+          transform: scale(1);
         }
         50% {
-          background-position: 100% 50%;
+          transform: scale(1.05);
         }
         100% {
-          background-position: 0% 50%;
+          transform: scale(1);
         }
       }
-
-      .social-icon i {
-        position: relative;
-        z-index: 1;
-        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      .floating {
+        animation: floating 3s ease-in-out infinite;
       }
-
-      .social-icon:hover {
-        transform: translateY(-5px) scale(1.1);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      .members-count {
-        font-size: 1rem;
-        color: #555;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: rgba(249, 249, 249, 0.7);
-        border-radius: 50px;
-        display: inline-block;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-      }
-
-      @media (max-width: 768px) {
-        .profile-card {
-          padding: 20px;
-          margin-top: 20px;
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
         }
-
-        .btn {
-          display: block;
-          width: 100%;
-          margin: 10px 0;
+        50% {
+          transform: translateY(-15px);
         }
-
-        .social-icons {
-          gap: 15px;
-        }
-
-        .social-icon {
-          width: 50px;
-          height: 50px;
-          font-size: 1.5rem;
-        }
-
-        .community-description-container {
-          height: 160px;
-        }
-
-        .community-name::before,
-        .community-name::after {
-          width: 20px; /* Garis lebih pendek di mobile */
-        }
-      }
-
-      @media (max-width: 480px) {
-        .community-name {
-          font-size: clamp(1.5rem, 7vw, 1.8rem);
-        }
-
-        .community-name::before,
-        .community-name::after {
-          display: none; /* Sembunyikan garis di layar sangat kecil */
+        100% {
+          transform: translateY(0px);
         }
       }
     </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="profile-card">
-        <img src="src.jpg" alt="Foto Profil Komunitas" class="profile-img" />
-
-        <div class="community-name-wrapper">
-          <h1 class="community-name">Stress Relief Community</h1>
-        </div>
-
-        <div class="community-description-container">
-          <p class="community-description fade-in" id="desc1">
-            Stress Relief Community (SRC) adalah komunitas kecil yang
-            menyediakan ruang aman dan ramah untuk siapa saja yang ingin curhat,
-            bercerita, atau ngobrol santai.
-          </p>
-          <p class="community-description" id="desc2" style="opacity: 0">
-            Tujuan utama kami adalah jadi tempat dukungan mental, edukasi, dan
-            diskusi terbuka tanpa stigma.
-          </p>
-          <p class="community-description" id="desc3" style="opacity: 0">
-            Aktivitas utama kami meliputi curhat bareng, diskusi santai, berbagi
-            cerita, ngobrol seru, dan akses ke library berisi sumber belajar.
-          </p>
-          <p class="community-description" id="desc4" style="opacity: 0">
-            Topik yang sering dibahas mencakup psikologi, kesehatan medis, dan
-            pendidikan, semuanya dibalut suasana yang hangat dan bersahabat.
-          </p>
-          <p class="community-description" id="desc5" style="opacity: 0">
-            Kalau kamu butuh teman cerita atau ingin tumbuh bareng lewat obrolan
-            positif, yuk gabung ke SRC!
-          </p>
-        </div>
-
-        <a
-          href="https://chat.whatsapp.com/KxkCrICV4XbCnlRAG5ZJj9?mode=r_t"
-          class="btn btn-primary"
-          >Gabung Komunitas WhatsApp</a
-        >
-        <a href="https://wa.me/6281615648573" class="btn btn-secondary"
-          >Hubungi Owner</a
-        >
-
-        <div class="members-count">
-          <i class="fas fa-users"></i> Sudah ada 100+ orang yang bergabung!
-        </div>
-
-        <div class="social-icons">
-          <a
-            href="https://www.instagram.com/src.official.id/"
-            target="_blank"
-            class="social-icon instagram"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a
-            href="https://www.tiktok.com/@src.official.id/"
-            target="_blank"
-            class="social-icon tiktok"
-          >
-            <i class="fab fa-tiktok"></i>
-          </a>
+  <body class="bg-light text-dark">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 flex items-center">
+              <!-- <i class="fas fa-code text-primary text-2xl mr-2"></i> -->
+              <span class="font-bold text-xl text-primary">SRC Community</span>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="text-gray-600 hover:text-primary font-medium"
+              >Beranda</a
+            >
+            <a
+              href="#about"
+              class="text-gray-600 hover:text-primary font-medium"
+              >Tentang Kami</a
+            >
+            <a
+              href="#features"
+              class="text-gray-600 hover:text-primary font-medium"
+              >Fitur</a
+            >
+            <a
+              href="#roles"
+              class="text-gray-600 hover:text-primary font-medium"
+              >Peran</a
+            >
+            <a
+              href="#join"
+              class="bg-primary text-white px-4 py-2 rounded-lg font-medium join-btn"
+              >Bergabung Sekarang</a
+            >
+          </div>
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-600 hover:text-primary"
+            >
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="md:hidden hidden bg-white px-4 py-6">
+        <div class="flex flex-col space-y-4">
+          <a href="#home" class="text-gray-600 hover:text-primary font-medium"
+            >Beranda</a
+          >
+          <a href="#about" class="text-gray-600 hover:text-primary font-medium"
+            >Tentang Kami</a
+          >
+          <a
+            href="#features"
+            class="text-gray-600 hover:text-primary font-medium"
+            >Fitur</a
+          >
+          <a href="#roles" class="text-gray-600 hover:text-primary font-medium"
+            >Peran</a
+          >
+          <a
+            href="#join"
+            class="bg-primary text-white px-4 py-2 rounded-lg font-medium text-center"
+            >Bergabung Sekarang</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="text-white">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+            >
+              Gabung dengan <span class="text-accent">SRC Community</span>
+            </h1>
+            <p class="text-xl mb-8 opacity-90">
+              SRC itu komunitas anak muda yang jadi ruang aman buat curhat,
+              tempat kita bisa ngomongin beban, stres, atau hal pribadi tanpa
+              dijudge, sambil dapet dukungan dari teman sebaya dan admin yang
+              paham batasan. Ada aturan jelas soal privasi dan respek supaya
+              yang curhat nggak kebocoran atau disalahgunakan; sharing bersifat
+              sukarela, ada opsi anonim kalau perlu, dan anggota didorong kasih
+              dukungan praktis (dengerin, kasih saran sederhana, atau refer ke
+              sumber bantuan). Penting: ini bukan pengganti terapi profesional,
+              kalau masalahnya berat, komunitas bakal bantu arahkan ke layanan
+              yang tepat. Di samping itu ada bot yang standby untuk menjaga
+              ketertiban, ngingetin aturan, dan cepat arahkan orang ke resource
+              saat darurat tapi peran bot cuma bantu, interaksi manusia tetap
+              utama.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#join"
+                class="bg-accent text-white px-8 py-4 rounded-lg font-bold text-lg join-btn"
+                >Daftar Sekarang</a
+              >
+              <a
+                href="#about"
+                class="bg-white text-primary px-8 py-4 rounded-lg font-bold text-lg"
+                >Pelajari Lebih Lanjut</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Tentang <span class="text-primary">SRC Community</span>
+          </h2>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Komunitas yang fokus pada dukungan kesehatan mental, menciptakan
+            ruang yang aman, suportif, dan produktif.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="bg-primary text-white p-6 rounded-lg mb-6 card-hover">
+            <h3 class="text-xl font-bold mb-2">Visi Kami</h3>
+            <p>
+              Mewujudkan komunitas suportif yang memprioritaskan kesehatan
+              mental dan perkembangan pribadi setiap anggota.
+            </p>
+          </div>
+          <div class="bg-accent text-white p-6 rounded-lg mb-6 card-hover">
+            <h3 class="text-xl font-bold mb-2">Misi Kami</h3>
+            <p>
+              Membangun platform komunitas yang memfasilitasi dukungan
+              emosional, diskusi bermakna, dan pengembangan diri anggota lewat
+              kegiatan terstruktur dalam suasana santai.
+            </p>
+          </div>
+          <div class="bg-secondary text-white p-6 rounded-lg card-hover">
+            <h3 class="text-xl font-bold mb-2">Nilai Kami</h3>
+            <p>
+              Kolaborasi, dukungan, pertumbuhan, inklusivitas, dan keseimbangan
+              antara produktivitas dengan kesejahteraan mental.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Fitur <span class="text-primary">Komunitas</span>
+          </h2>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Berbagai fitur yang kami sediakan untuk mendukung kesehatan mental
+            dan menciptakan ruang aman bagi semua anggota.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div
+              class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-users text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Ruang Curhat</h3>
+            <p class="text-gray-600">
+              Tempat aman untuk berbagi cerita, masalah, atau beban pikiran
+              tanpa rasa takut dihakimi.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div
+              class="bg-accent text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-comments text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Diskusi Bermakna</h3>
+            <p class="text-gray-600">
+              Forum untuk membahas topik kesehatan mental, tips mengelola stres,
+              dan pengalaman positif.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div
+              class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-brain text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Edukasi Mental Health</h3>
+            <p class="text-gray-600">
+              Materi, artikel, dan sesi edukasi tentang cara menjaga kesehatan
+              mental sehari-hari.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div
+              class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-heart text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Dukungan Sebaya</h3>
+            <p class="text-gray-600">
+              Sistem saling dukung antar anggota untuk memberikan empati,
+              mendengarkan, dan menguatkan.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div
+              class="bg-accent text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-robot text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">SRC Bot</h3>
+            <p class="text-gray-600">
+              Bot yang membantu koordinasi kegiatan, mengingatkan jadwal, dan
+              menjaga aturan komunitas.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div
+              class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-shield-alt text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Aturan Privasi & Etika</h3>
+            <p class="text-gray-600">
+              Menjamin privasi cerita anggota, menjaga etika diskusi, dan
+              menciptakan ruang aman untuk semua.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section id="roles" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Struktur <span class="text-primary">Peran</span>
+          </h2>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Setiap anggota memiliki peran dan tanggung jawab yang jelas untuk
+            menjaga kualitas komunitas
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-gray-50 p-8 rounded-xl text-center role-card">
+            <div
+              class="bg-primary text-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-crown text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Owner</h3>
+            <p class="text-gray-600 mb-4">
+              Memimpin komunitas, menetapkan arah strategis, dan menjaga visi
+              misi SRC.
+            </p>
+            <div class="text-sm text-primary font-medium">2 Posisi</div>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl text-center role-card">
+            <div
+              class="bg-secondary text-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-user-shield text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Admin</h3>
+            <p class="text-gray-600 mb-4">
+              Mengelola operasional harian, memoderasi konten, dan menegakkan
+              aturan komunitas.
+            </p>
+            <div class="text-sm text-primary font-medium">3 Posisi</div>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl text-center role-card">
+            <div
+              class="bg-accent text-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-code text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Bot</h3>
+            <p class="text-gray-600 mb-4">
+              Mengingatkan jadwal, menjaga ketertiban, dan melindungi privasi
+              anggota.
+            </p>
+            <div class="text-sm text-primary font-medium">1 Posisi</div>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl text-center role-card">
+            <div
+              class="bg-primary text-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-users text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Member</h3>
+            <p class="text-gray-600 mb-4">
+              Berpartisipasi aktif dalam kegiatan, proyek, dan diskusi
+              komunitas.
+            </p>
+            <div class="text-sm text-primary font-medium">
+              Terbuka untuk semua
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Section - WhatsApp Button -->
+    <section
+      id="join"
+      class="py-20 bg-gradient-to-b from-primary via-purple-600 to-secondary"
+    >
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-xl p-10 md:p-16 text-center">
+          <div class="relative mb-10">
+            <div
+              class="absolute -top-6 -left-6 w-24 h-24 bg-accent rounded-full opacity-20"
+            ></div>
+            <div
+              class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary rounded-full opacity-20"
+            ></div>
+
+            <div class="relative floating">
+              <div class="bg-[#e2f7e9] rounded-full p-6 inline-block">
+                <div class="bg-white rounded-full p-5 shadow-lg">
+                  <i class="fab fa-whatsapp text-7xl text-[#25D366]"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Bergabung dengan <span class="text-primary">SRC Community</span>
+          </h2>
+
+          <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+            Kami menggunakan WhatsApp sebagai platform utama komunikasi
+            komunitas. Bergabunglah sekarang untuk mendapatkan dukungan dan
+            menjadi bagian dari komunitas yang peduli!
+          </p>
+
+          <div class="flex flex-col items-center">
+            <a
+              href="https://wa.me/6281615648573"
+              target="_blank"
+              class="whatsapp-btn pulse bg-[#25D366] hover:bg-[#128C7E] text-white px-12 py-5 rounded-full font-bold text-xl flex items-center transition-all duration-300 mb-6"
+            >
+              <i class="fab fa-whatsapp text-3xl mr-4"></i>
+              <span>Gabung via WhatsApp</span>
+            </a>
+
+            <div class="text-sm text-gray-500 max-w-md">
+              <p>
+                Setelah bergabung, perkenalkan diri Anda sesuai petunjuk admin.
+                Kami akan menyambut Anda dengan hangat!
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-5 rounded-lg">
+              <i class="fas fa-shield-alt text-primary text-2xl mb-3"></i>
+              <h3 class="font-bold mb-2">Privasi Terjaga</h3>
+              <p class="text-gray-600 text-sm">
+                Cerita dan identitas Anda akan kami jaga dengan baik
+              </p>
+            </div>
+            <div class="bg-gray-50 p-5 rounded-lg">
+              <i class="fas fa-users text-primary text-2xl mb-3"></i>
+              <h3 class="font-bold mb-2">Komunitas Suportif</h3>
+              <p class="text-gray-600 text-sm">
+                Lebih dari 500 anggota aktif siap mendukung Anda
+              </p>
+            </div>
+            <div class="bg-gray-50 p-5 rounded-lg">
+              <i class="fas fa-comments text-primary text-2xl mb-3"></i>
+              <h3 class="font-bold mb-2">Diskusi Bermakna</h3>
+              <p class="text-gray-600 text-sm">
+                Topik bermanfaat untuk kesehatan mental Anda
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center mb-4">
+              <!-- <i class="fas fa-code text-primary text-2xl mr-2"></i> -->
+              <span class="font-bold text-xl text-white">SRC Community</span>
+            </div>
+            <p class="text-gray-400 mb-4">
+              Komunitas yang mendukung kesehatan mental dan menciptakan ruang
+              aman untuk semua.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-discord text-xl"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-github text-xl"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram text-xl"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin text-xl"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Tautan Cepat</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#home" class="text-gray-400 hover:text-white"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a href="#about" class="text-gray-400 hover:text-white"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li>
+                <a href="#features" class="text-gray-400 hover:text-white"
+                  >Fitur</a
+                >
+              </li>
+              <li>
+                <a href="#roles" class="text-gray-400 hover:text-white"
+                  >Peran</a
+                >
+              </li>
+              <li>
+                <a href="#join" class="text-gray-400 hover:text-white"
+                  >Bergabung</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Kebijakan</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Privasi</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Etika Komunitas</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Syarat & Ketentuan</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Pedoman Kontribusi</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Kontak</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                <span class="text-gray-400">src.id@gmail.com/span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                <span class="text-gray-400">JawaTimur, Indonesia</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2025 SRC Community. Hak cipta dilindungi.</p>
+        </div>
+      </div>
+    </footer>
 
     <script>
-      // Animasi sederhana saat halaman dimuat
-      document.addEventListener("DOMContentLoaded", function () {
-        const profileCard = document.querySelector(".profile-card");
-        profileCard.style.opacity = "0";
-        profileCard.style.transform = "translateY(20px)";
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
 
-        setTimeout(() => {
-          profileCard.style.transition =
-            "opacity 0.5s ease, transform 0.5s ease";
-          profileCard.style.opacity = "1";
-          profileCard.style.transform = "translateY(0)";
-        }, 100);
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
 
-        // Rotasi deskripsi komunitas
-        const descriptions = [
-          "Stress Relief Community (SRC) adalah komunitas kecil yang menyediakan ruang aman dan ramah untuk siapa saja yang ingin curhat, bercerita, atau ngobrol santai.",
-          "Tujuan utama kami adalah jadi tempat dukungan mental, edukasi, dan diskusi terbuka tanpa stigma.",
-          "Aktivitas utama kami meliputi curhat bareng, diskusi santai, berbagi cerita, ngobrol seru, dan akses ke library berisi sumber belajar.",
-          "Topik yang sering dibahas mencakup psikologi, kesehatan medis, dan pendidikan, semuanya dibalut suasana yang hangat dan bersahabat.",
-          "Kalau kamu butuh teman cerita atau ingin tumbuh bareng lewat obrolan positif, yuk gabung ke SRC!",
-        ];
-
-        const descElements = [
-          document.getElementById("desc1"),
-          document.getElementById("desc2"),
-          document.getElementById("desc3"),
-          document.getElementById("desc4"),
-          document.getElementById("desc5"),
-        ];
-
-        let currentIndex = 0;
-
-        function rotateDescription() {
-          // Sembunyikan semua deskripsi
-          descElements.forEach((desc) => {
-            desc.classList.remove("fade-in");
-            desc.classList.add("fade-out");
-          });
-
-          // Setelah animasi fade-out selesai, tampilkan yang baru
-          setTimeout(() => {
-            // Pilih deskripsi berikutnya secara acak
-            let newIndex;
-            do {
-              newIndex = Math.floor(Math.random() * descriptions.length);
-            } while (newIndex === currentIndex);
-
-            currentIndex = newIndex;
-
-            // Sembunyikan semua
-            descElements.forEach((desc) => {
-              desc.style.opacity = "0";
-              desc.style.display = "none";
-            });
-
-            // Tampilkan yang baru
-            descElements[currentIndex].style.display = "block";
-            descElements[currentIndex].classList.remove("fade-out");
-            descElements[currentIndex].classList.add("fade-in");
-            setTimeout(() => {
-              descElements[currentIndex].style.opacity = "1";
-            }, 10);
-          }, 800); // Sesuaikan dengan durasi transisi CSS
-        }
-
-        // Mulai rotasi setiap 5 detik
-        setInterval(rotateDescription, 10000);
-
-        // Rotasi pertama setelah 5 detik
-        setTimeout(rotateDescription, 10000);
+      // Close mobile menu when clicking a link
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
       });
     </script>
   </body>
